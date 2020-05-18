@@ -1,0 +1,282 @@
+<template>
+  <div class="wrapper">
+    <h2 class='content-title'>{{type === 'add'?"创建文章":(articleTitle?'编辑文章——'+articleTitle:'编辑文章')}}</h2>
+    <div class="box-table">
+      <my-form
+        :ref='articleForm.ref'
+        :formConfig="articleForm"
+      >
+        <div slot='upload'>
+          <upload-file listType='picture-card' :fileList='fileList' @uploadEvent='beforeUpload' @removeEvent='beforeRemove'></upload-file>
+        </div>
+      </my-form>
+      <div class="box-content">
+        <span class='content-info'>文章内容</span>
+        <WangEnduit v-model="content"></WangEnduit>
+      </div>
+      <div class="box-btn">
+        <div class="btn-click btn-margin" @click='articleAdd("0")'>存草稿</div>
+        <div class="btn-click btn-submit" @click='articleAdd("1")'>发布</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import WangEnduit from "@/components/WangEnduit";
+import MyForm from '@/components/MyForm'
+import UploadFile from '@/components/UploadFile'
+import Format from "@/utils/format.js"
+export default {
+  data() {
+    return {
+      id: '',
+      articleTitle: '',
+      type: 'add',
+      fileList: [],
+      content: "",
+      articleForm: {
+        ref: 'articleRef',
+        labelWidth: '80px',
+        marginBottom: '30px',
+        requiredAsterisk: true,
+        formItemList: [
+          {
+            type: "text",
+            prop: "title",
+            width: '400px',
+            label: '文章标题',
+            placeholder: "请输入文章标题"
+          },
+          {
+            type: "text",
+            prop: "description",
+            width: '400px',
+            label: '文章描述',
+            placeholder: "请输入文章描述"
+          },
+          {
+            type: "select",
+            prop: "tags",
+            multiple: true,
+            width: '400px',
+            label: '文章标签',
+            placeholder: "请选择文章标签",
+            arrList: []
+          },
+          {
+            label: "文章封面",
+            slot: 'upload'
+          }
+        ],
+        formModel: {
+          title: '',
+          description: '',
+          tags: []
+        },
+        rules: {
+          title: [
+            { required: true, validator: Format.FormValidate.Form('文章标题').NoEmpty, trigger: 'blur' }
+          ],
+          description: [
+            { required: true, validator: Format.FormValidate.Form('文章描述').NoEmpty, trigger: 'blur' }
+          ],
+          tags: [
+            { required: true, validator: Format.FormValidate.Form('文章标签').TypeSelect, trigger: 'change' }
+          ]
+        }
+      }
+    };
+  },
+  created() {},
+  mounted() {
+    this.getTagsList()
+    if(this.$route.query.articleId){
+      this.type = 'edit'
+      this.id = this.$route.query.articleId
+      this.articleTitle = this.$route.query.articleTitle
+      this.getData()
+    }
+  },
+  methods: {
+    getData(){
+      this.$api.article.articleDetail({
+        id: this.id
+      }).then(res=>{
+        let code = res.code
+        if(code === this.$constant.reqSuccess){
+          let data = res.data
+          if(data.imgId){
+            this.fileList = [
+              {
+                name: '',
+                url: `${this.$baseURL}/file/down?downId=${data.imgId}`,
+                sourceId: data.imgId
+              }
+            ]
+          }
+          let tags = []
+          data.tags.forEach(item=>{
+            tags.push(item._id)
+          })
+          this.articleForm.formModel = {
+            title: data.title,
+            description: data.description,
+            tags
+          }
+          this.content = data.content
+        }else{
+          this.$message.warning('获取文章详情失败');
+        }
+      })
+    },
+    getTagsList(){
+      this.$api.article.tagList({
+        currentPage: '1',
+        pageSize: '99'
+      }).then(res =>{
+        let code = res.code
+        if(code === this.$constant.reqSuccess){
+          let list = res.data.data
+          if(list.length > 0){
+            list.forEach(item=>{
+              item.label = item.name
+              item.value = item._id
+            })
+          }
+          this.articleForm.formItemList[2].arrList = list
+        }else{
+          this.$message.warning('获取标签列表失败');
+        }
+      })
+    },
+    beforeUpload(fileData){
+      this.fileList = [fileData]
+    },
+    beforeRemove(file){
+      this.fileList = []
+    },
+    preview(){
+      if(this.content != ''){
+        this.$alert(this.content, '文章预览', {
+          dangerouslyUseHTMLString: true,
+          customClass: 'message-box w-e-text',
+          showConfirmButton: false,
+          closeOnClickModal: true
+        }).then(() => {
+
+        }).catch(action => {
+
+        })
+      }else{
+        this.$message.warning({
+          message: '预览文章内容不为空',
+          duration: 1500
+        })
+      }
+
+    },
+    articleAdd(status){
+      this.$refs["articleRef"].$refs["articleRef"].validate((valid) => {
+        if (valid) {
+          let {content, fileList} = this
+          if(this.content){
+            let formModel = this.articleForm.formModel
+            if(this.type === 'add'){
+              this.$api.article.articleAdd({
+                title: formModel.title,
+                description: formModel.description,
+                content,
+                imgId: fileList.length > 0?fileList[0].sourceId:null,
+                status,
+                tags: formModel.tags.join(',')
+              }).then((res)=>{
+                let code = res.code
+                if(code === this.$constant.reqSuccess){
+                  this.$message.success('文章新增成功')
+                  this.$router.push({path: '/article/articleList'})
+                }else if(code === this.$constant.dataAlready){
+                  formModel.title = ''
+                  this.$message.warning('文章标题已存在')
+                }else{
+                  this.$message.warning('文章新增失败')
+                }
+              })
+            }else{
+              this.$api.article.articleUpdate({
+                id: this.id,
+                title: formModel.title,
+                description: formModel.description,
+                content,
+                imgId: fileList.length > 0?fileList[0].sourceId:null,
+                status,
+                tags: formModel.tags.join(',')
+              }).then((res)=>{
+                let code = res.code
+                if(code === this.$constant.reqSuccess){
+                  this.$message.success('文章编辑成功')
+                  this.$router.push({path: '/article/articleList'})
+                }else if(code === this.$constant.dataAlready){
+                  formModel.title = ''
+                  this.$message.warning('文章标题已存在')
+                }else{
+                  this.$message.warning('文章编辑失败')
+                }
+              })
+            }
+          }else{
+            this.$message.warning("文章内容不为空")
+          }
+        } else {
+          this.$message.warning("信息校验失败")
+        }
+      })
+    }
+  },
+  watch: {},
+  components: {
+    WangEnduit,
+    MyForm,
+    UploadFile
+  },
+  computed: {}
+};
+</script>
+
+<style lang="scss" scoped>
+.box-table{
+  padding: 30px 60px 40px;
+}
+.box-content{
+  width: 100%;
+  padding-right: 100px;
+  display: flex;
+  .content-info{
+    width: 80px;
+    flex-shrink: 0;
+  }
+}
+.box-btn{
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .btn-click{
+    border: 1px solid $color-G40;
+    padding: 8px 15px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+  .btn-margin{
+    margin: 0 25px;
+    padding: 8px 20px;
+  }
+  .btn-submit{
+    background-color: $color-B70;
+    padding: 8px 20px;
+    border: none;
+    color: $color-W100;
+  }
+}
+</style>

@@ -1,0 +1,331 @@
+// element-ui样式覆盖
+
+.el-icon-info{
+  font-size: 16px;
+}
+.el-menu{
+  @include bd-color($color-B80);
+  @include bg-color($color-B80);
+  .el-submenu__title{
+    @include font-color($color-W100,$color-W90);
+    i{
+      @include font-color($color-W100,$color-W90);
+
+    }
+    &:hover{
+      @include bg-color($color-W20,$color-D20);
+    }
+  }
+  .el-menu-item{
+    @include font-color($color-W100,$color-W90);
+    i{
+      @include font-color($color-W100,$color-W90);
+
+    }
+    &:focus{
+      @include bg-color;
+    }
+    &.is-active{
+      @include font-color($color-C100,$color-B70);
+      @include bg-color($color-W20,$color-D20);
+      i{
+        @include font-color($color-C100,$color-B70);
+      }
+    }
+    &:hover{
+      @include bg-color($color-W20,$color-D20);
+    }
+  }
+}
+
+.el-breadcrumb__item{
+  span{
+    @include font-color($color-C40,$color-W60);
+    a{
+      @include font-color($color-C40,$color-W60);
+    }
+  }
+}
+
+.el-badge{
+  .el-badge__content{
+    @include bd-color($color-W100,$color-C80);
+  }
+}
+
+.el-dropdown-menu{
+  @include bg-color($color-W100,$color-C80);
+  @include bd-color($color-C20);
+  .el-dropdown-menu__item{
+    @include font-color($color-C40,$color-W60);
+    &:focus, &:not(.is-disabled):hover{
+      @include bg-color($color-B20,$color-C80);
+      @include font-color($color-W100,$color-B70);
+    }
+    &.is-disabled{
+      @include font-color($color-G50,$color-W30);
+    }
+  }
+  .el-dropdown-menu__item--divided{
+    @include bd-color($color-C20,$color-W10);
+    &::before{
+      @include bg-color($color-W100);
+    }
+  }
+  
+}
+.el-popper[x-placement^=bottom]{
+  .popper__arrow{
+    [data-theme='custom-light'] & {
+      border-bottom-color: $color-W100;
+    }
+    [data-theme='custom-dark'] & {
+      border-bottom-color: $color-C80;
+    }
+    &::after{
+      [data-theme='custom-light'] & {
+        border-bottom-color: $color-W100;
+      }
+      [data-theme='custom-dark'] & {
+        border-bottom-color: $color-C80;
+      }
+    }
+  }
+}
+.el-popper[x-placement^=top]{
+  .popper__arrow{
+    [data-theme='custom-light'] & {
+      border-top-color: $color-W100;
+    }
+    [data-theme='custom-dark'] & {
+      border-top-color: $color-C80;
+    }
+    &::after{
+      [data-theme='custom-light'] & {
+        border-top-color: $color-W100;
+      }
+      [data-theme='custom-dark'] & {
+        border-top-color: $color-C80;
+      }
+    }
+  }
+}
+
+.el-card{
+  @include bg-color($color-W100,$color-C70);
+  @include bd-color($color-C20,$color-C70);
+}
+
+.el-progress{
+  .el-progress-bar__outer{
+    @include bg-color($color-C20,$color-W20);
+  }
+}
+
+.el-input__inner, .el-textarea__inner{
+  @include bg-color($color-W100,#292D35);
+  @include bd-color($color-C60,$color-W40);
+  @include font-color($color-C40,$color-G80);
+  .el-range-input{
+    @include bg-color($color-W100,#292D35);
+  }
+  .el-range-separator{
+    @include font-color(#303133,$color-G80);
+  }
+}
+.el-picker-panel{
+  @include bg-color($color-W100,$color-C80);
+  @include bd-color(#E4E7ED);
+  .el-date-range-picker__content.is-left{
+    @include bd-color(#E4E4E4,$color-W10);
+  }
+  .el-picker-panel__icon-btn{
+    @include font-color(#303133,$color-W50);
+  }
+  .el-date-table th{
+    @include bd-color(#EBEEF5,$color-W10);
+  }
+  .el-date-table td.in-range div, .el-date-table td.in-range div:hover, .el-date-table.is-week-mode .el-date-table__row.current div, .el-date-table.is-week-mode .el-date-table__row:hover div{
+    @include bg-color(#F2F6FC,$color-W10);
+  }
+}
+
+.el-radio-button__inner{
+  @include bg-color($color-W100,$color-W10);
+  @include bd-color($color-C60,$color-W20);
+}
+.el-radio-button:first-child .el-radio-button__inner{
+  @include bd-color($color-C60,$color-W20);
+}
+
+.el-steps{
+  .el-step__head.is-process{
+    @include bd-color($color-G80,$color-G80);
+    @include font-color($color-G80,$color-G80);
+  }
+  .el-step__head.is-success{
+    @include bd-color(#67C23A,$color-B70);
+    @include font-color(#67C23A,$color-B70);
+  }
+  .el-step__title.is-process{
+    @include font-color($color-G80,$color-G80);
+  }
+  .el-step__title.is-success{
+    @include font-color(#67C23A,$color-B70);
+  }
+  .el-step__head.is-wait{
+    @include bd-color(#C0C4CC,$color-G80);
+    @include font-color(#C0C4CC,$color-W20);
+  }
+  .el-step__title.is-wait{
+    @include font-color(#C0C4CC,$color-W20);
+  }
+  .el-step__icon{
+    @include bg-color($color-W100,$color-G100);
+  }
+  .el-step__line{
+    @include bg-color(#C0C4CC,$color-W20);
+  }
+}
+
+.el-tag{
+  @include bg-color(#d9ecff,$color-W10);
+  @include bd-color(#d9ecff);
+  @include font-color($color-B70,$color-B70);
+}
+
+.el-upload--picture-card{
+  @include bg-color(#fbfdff);
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover>td{
+  @include bg-color(#F5F7FA,$color-W10);
+}
+.page-list .el-pagination.is-background .btn-prev, .page-list .el-pagination.is-background .btn-next, .page-list .el-pagination.is-background .btn-prev:disabled, .page-list .el-pagination.is-background .btn-next:disabled, .page-list .el-pagination.is-background .el-pager li{
+  @include bg-color($color-W100,$color-W10);
+  @include bd-color(#dcdee2,$color-W10);
+}
+
+.el-select-dropdown{
+  @include bg-color($color-W100,$color-C80);
+  @include bd-color($color-C20);
+  .el-select-dropdown__item{
+    @include font-color($color-C40,$color-C40);
+    &.selected{
+      @include font-color($color-B70,$color-B70);
+    }
+    &:hover, &.hover{
+      @include bg-color(#F5F7FA,$color-W10);
+    }
+  }
+  .el-select-dropdown__item.is-disabled{
+    color: #C0C4CC;
+  }
+}
+
+.el-radio__inner{
+  @include bg-color($color-W100,$color-W10);
+  @include bd-color($color-C60,$color-W10);
+}
+.el-radio__input.is-checked{
+  .el-radio__inner{
+    @include bd-color($color-B70,$color-B70);
+    @include bg-color;
+    &::after{
+      width: 8px;
+      height: 8px;
+      @include bg-color($color-B70,$color-B70);
+    }
+  }
+}
+
+.el-checkbox__inner{
+  @include bg-color($color-W100,$color-W10);
+  @include bd-color($color-C60,$color-W10);
+}
+
+.el-switch__core{
+  @include bg-color($color-C60,$color-W10);
+  @include bd-color($color-C60,$color-W10);
+  &::after{
+    @include bg-color($color-W100,$color-W50);
+  }
+}
+.el-switch.is-checked{
+  .el-switch__core{
+    &::after{
+      @include bg-color($color-W100,$color-W90);
+    }
+  }
+}
+.el-slider__runway{
+  @include bg-color(#E4E7ED,$color-W20);
+}
+
+.el-drawer{
+  @include bg-color($color-W100,$color-C70);
+}
+
+// .el-message-box{
+//   @include bg-color($color-W100,$color-C70);
+//   @include bd-color($color-C20,$color-W10);
+//   .el-message-box__title{
+//     @include font-color(#303133,$color-W50);
+//   }
+//   .el-button--default:first-child{
+//     @include bg-color($color-W100);
+//     @include bd-color($color-C60,$color-W10);
+//   }
+//   .el-button--primary{
+//     @include font-color($color-W100,$color-W80);
+//   }
+// }
+
+.el-dialog, .el-pager li{
+  @include bg-color($color-W100,$color-C70);
+  .el-dialog__title{
+    @include font-color(#303133,$color-W50);
+  }
+  .el-button--default:first-child{
+    @include bg-color($color-W100);
+    @include bd-color($color-C60,$color-W10);
+  }
+  .el-button--primary{
+    @include font-color($color-W100,$color-W80);
+  }
+}
+
+.el-color-picker__trigger{
+  @include bd-color(#e6e6e6,$color-W10);
+}
+.el-color-picker__panel{
+  @include bg-color($color-W100,$color-G80);
+  @include bd-color($color-C20,$color-G80);
+}
+.el-color-dropdown__btns{
+  .el-color-dropdown__btn{
+    @include bg-color($color-W100,$color-W10);
+    @include bd-color($color-C60,$color-W10);
+    @include font-color($color-C40,$color-W80);
+  }
+  .el-button.is-plain:active {
+    @include bg-color($color-W100,$color-W10);
+  }
+  .el-button.is-plain:focus, .el-button.is-plain:hover{
+    @include bg-color($color-W100,$color-W10);
+    @include bd-color($color-C60,$color-W30);
+    @include font-color($color-C40,$color-W90);
+  }
+}
+.el-table, .el-table__expanded-cell, .el-table tr{
+  @include bg-color($color-W100,$color-C70);
+}
+.el-table th{
+  @include bg-color($color-W100,#2B3037);
+}
+.el-table td, .el-table th.is-leaf{
+  @include bd-color($color-C20,$color-W10);
+}
+.el-table--border::after, .el-table--group::after, .el-table::before{
+  @include bg-color($color-C20,$color-W10);
+}

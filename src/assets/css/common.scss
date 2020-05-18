@@ -1,0 +1,230 @@
+// 动画
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .5s;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* breadcrumb transition */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .5s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.breadcrumb-move {
+  transition: all .5s;
+}
+.breadcrumb-leave-active {
+  position: absolute;
+}
+
+
+// 记住密码默认背景颜色和字体颜色，注意字体颜色不要和框的背景色一致
+input:-webkit-autofill,
+input:-internal-autofill-previewed,
+input:-internal-autofill-selected,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #fff !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  background-color: transparent;
+  background-image: none;
+  color: #fff !important;
+  transition: background-color 500000s ease-in-out 0s;
+}
+
+.body-index {
+  // 时间范围中间文字（至）宽度
+  .el-date-editor {
+    .el-range-separator {
+      width: 25px;
+    }
+  }
+}
+// 步骤条
+.el-steps {
+  display: flex;
+  justify-content: center;
+  & > .el-step:last-child {
+    flex-basis: auto !important;
+  }
+}
+//文本框禁用拖拽
+.el-textarea .el-textarea__inner {
+  resize: none;
+}
+// 文字错误提示大小和颜色
+.el-form-item {
+  .el-form-item__error {
+    font-size: 14px;
+  }
+  &.is-error {
+    .custom-icon {
+      color: $color-R40;
+    }
+  }
+}
+// 图片加载失败
+.el-image__error {
+  padding: 0 10px;
+}
+// 分页布局
+.page-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  .el-pagination.is-background {
+    font-weight: 400;
+    .btn-prev,
+    .btn-next,
+    .btn-prev:disabled,
+    .btn-next:disabled {
+      border-radius: 4px;
+      border: 1px solid;
+      @include bd-color(#dcdee2, $color-W10);
+      @include bg-color($color-W100, $color-W10);
+    }
+    .el-pager {
+      li {
+        color: #707378;
+        border: 1px solid;
+        @include bd-color(#dcdee2, $color-W10);
+      }
+    }
+  }
+}
+// MessageBox对话弹框默认宽度设置以及超出滚动
+.el-message-box__wrapper {
+  .message-box {
+    width: 720px;
+  }
+  .el-message-box__content {
+    max-height: 540px;
+    overflow-y: auto;
+  }
+}
+// Dialog对话框超出滚动
+.body-index {
+  // 设置整屏遮罩，防止对话框滚动
+  .el-dialog__wrapper {
+    height: 100vh;
+    overflow: hidden;
+    .el-dialog__body {
+      padding: 30px;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+  }
+}
+// drawer抽屉body超出滚动
+.el-dialog__wrapper{
+  .el-drawer__body{
+    overflow: auto;
+    padding-bottom: 40px;
+  }
+}
+// 表格超过显示tooltip文字提示宽度
+.el-tooltip__popper {
+  max-width: 800px;
+}
+// 时间选择器时分秒顶部和底部空出高度
+.el-time-panel {
+  .el-time-spinner__list::before,
+  .el-time-spinner__list::after {
+    height: 0;
+  }
+}
+// 单选框垂直排列
+.el-form-item__content {
+  /deep/ .radio-vertical {
+    &.el-radio-group {
+      vertical-align: text-top;
+      .el-radio {
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+// 标签页大小以及底部整条线高度
+.el-tabs__nav-wrap {
+  .el-tabs__item {
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+  &::after {
+    height: 1px;
+  }
+}
+// 上传图片组件插槽样式
+.image-slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #c0c4cc;
+  color: #fff;
+  i {
+    font-size: 18px;
+  }
+}
+.image-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.image-square {
+  width: 40px;
+  height: 40px;
+}
+// 表格中按钮组之间距离
+.el-table__body{
+  .el-button + .el-button {
+    margin-left: 20px;
+  }
+}
+// 弹框底部按钮距离
+.dialog-footer {
+  .el-button + .el-button {
+    margin-left: 40px;
+  }
+}
+// .body-index {
+//   .el-button--primary {
+//     background-color: $color-B50;
+//     border-color: $color-B50;
+//   }
+// }
+
+// h2标题样式
+.content-title {
+  font-size: 20px;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  @include font-color($color-G90, $color-W90);
+}
+// 内容阴影框
+.box-table {
+  @include bg-color($color-W100, $color-C70);
+  padding: 32px 24px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
