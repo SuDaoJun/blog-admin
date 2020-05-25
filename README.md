@@ -6,11 +6,11 @@
 
 效果图：
 
-![首页亮](http://sdj_work.gitee.io/note/img/adminHome.png)
-![首页暗](http://sdj_work.gitee.io/note/img/adminDark.png)
+![首页亮](https://sdj_work.gitee.io/note/img/adminHome.png)
+![首页暗](https://sdj_work.gitee.io/note/img/adminDark.png)
 
 
-完整效果请看：[http://47.112.104.1:8080/](http://47.112.104.1:8080/)
+完整效果请看：[http://sdjBlog.cn:8080/](http://sdjBlog.cn:8080/)
 
 ## 功能描述
 
@@ -116,4 +116,4 @@ npm run build
 
 > [后端：https://github.com/SuDaoJun/blog-node](https://github.com/SuDaoJun/blog-node)
 
-> [博客地址：http://47.112.104.1/](http://47.112.104.1/)
+> [博客地址：http://sdjBlog.cn/](http://sdjBlog.cn/)
