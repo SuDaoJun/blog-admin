@@ -7,8 +7,8 @@
         :formConfig="searchForm"
       >
       <div class="export-user" slot='exportUser' v-if='authList.includes("5e99c8a9d1ba729a78b016c1")'>
-        <el-button type="primary" @click.native='allExport'>导出所有</el-button>
-        <el-button style='margin-left: 40px;' :type="selectData.length === 0?'info':'primary'" @click='exportData'>导出数据</el-button>
+        <el-button type="primary" :loading='loadObj.allLoad' @click.native='allExport'>导出所有</el-button>
+        <el-button style='margin-left: 40px;' :loading='loadObj.selectLoad' :type="selectData.length === 0?'info':'primary'" @click='exportData'>导出选中</el-button>
       </div>
       </my-form>
       <el-alert
@@ -37,7 +37,7 @@
       ></my-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogBox.boxShow = false">取 消</el-button>
-        <el-button type="primary" @click="confirSubmit">确 定</el-button>
+        <el-button type="primary" @click="confirSubmit" :loading='loadObj.userLoad'>确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -52,6 +52,10 @@
     background-image: none;
     color: "#606266" !important;
     transition: background-color 500000s ease-in-out 0s;
+  }
+  .export-user{
+    display: flex;
+    align-items: center;
   }
   .alert-title{
     display: flex;
@@ -82,6 +86,11 @@ export default {
       }
     }
     return {
+      loadObj: {
+        userLoad: false,
+        allLoad: false,
+        selectLoad: false
+      },
       selectData: [],
       sortObj: {
         sortBy: null,
@@ -296,6 +305,8 @@ export default {
             prop: "phone",
             width: '450px',
             label: "手机号码",
+            maxlength: '11',
+            inputType: 'phone',
             placeholder: "请输入手机号码"
           }
 
@@ -321,7 +332,7 @@ export default {
             { required: true, validator: Format.FormValidate.Form('邮箱').Email, trigger: 'blur' }
           ],
           phone: [
-            { required: true, validator: Format.FormValidate.Form('手机').Phone, trigger: 'blur' }
+            { required: true, validator: Format.FormValidate.Form().Phone, trigger: 'blur' }
           ]
         }
       }
@@ -403,6 +414,7 @@ export default {
         let dialogBox = this.dialogBox;
         let formModel = this.userForm.formModel;
         if (valid) {
+          this.loadObj.userLoad = true
           if(dialogBox.isEdit){
             this.$api.user.userUpdate({
               id: dialogBox.detailItem._id,
@@ -411,6 +423,7 @@ export default {
               email: formModel.email,
             }).then(res => {
               let code = res.code
+              this.loadObj.userLoad = false
               if(code === this.$constant.reqSuccess){
                 this.dialogBox.boxShow = false;
                 this.getDataList();
@@ -432,6 +445,7 @@ export default {
               email: formModel.email,
             }).then((res)=>{
               let code = res.code
+              this.loadObj.userLoad = false
               if(code === this.$constant.reqSuccess){
                 this.dialogBox.boxShow = false;
                 this.getDataList();
@@ -479,6 +493,7 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
+          this.loadObj.allLoad = true
           this.$api.user.userList({
             currentPage: '1',
             pageSize: '999',
@@ -487,6 +502,7 @@ export default {
             sortBy,
             sortOrders
           }).then(res =>{
+            this.loadObj.allLoad = false
             let code = res.code
             if(code === this.$constant.reqSuccess){
               let dataArr = res.data.data
