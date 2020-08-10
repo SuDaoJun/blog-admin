@@ -1,6 +1,6 @@
 let countNum = /^\d+$|^\d+[.]?\d+$/;
 let emailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/i;
-let phoneReg = /^1[3|4|5|6|7|8|9][0-9]\d{4,8}$/;
+let phoneReg = /^[1][2,3,4,5,6,7,8,9][0-9]{9}$/;
 let alphabetReg = /^[A-Za-z]+$/;
 
 let FormValidate = (function () {
@@ -79,7 +79,7 @@ let FormValidate = (function () {
       // 手机验证
       Phone: (rule, value, callback) => {
         if (value === '' || value === undefined  || value === null) {
-          callback(new Error('请输入手机号码'));
+          callback();
         } else if (value.length !== 11) {
           callback(new Error('请输入11位数字号码'));
         } else if (!phoneReg.test(value)) {
@@ -111,5 +111,6 @@ let FormValidate = (function () {
 }())
 export default {
   FormValidate,
-  emailReg
+  emailReg,
+  phoneReg
 }

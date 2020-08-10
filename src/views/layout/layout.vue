@@ -227,6 +227,8 @@ export default {
             prop: "phone",
             width: '320px',
             label: "手机号码：",
+            maxlength: '11',
+            inputType: 'phone',
             placeholder: "请输入手机号码"
           },
           {

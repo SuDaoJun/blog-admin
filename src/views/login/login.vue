@@ -172,7 +172,9 @@ export default {
             type: "text",
             prop: "phone",
             prefix: "el-icon-mobile-phone",
-            placeholder: "手机号码（选填）"
+            placeholder: "手机号码（选填）",
+            maxlength: '11',
+            inputType: 'phone'
           },
           {
             type: "password",
@@ -225,6 +227,9 @@ export default {
               validator: Format.FormValidate.Form("邮箱验证码").FourCode,
               trigger: "blur"
             }
+          ],
+          phone: [
+            { required: true, validator: Format.FormValidate.Form('手机号码').Phone, trigger: 'blur' }
           ],
           password: [
             {

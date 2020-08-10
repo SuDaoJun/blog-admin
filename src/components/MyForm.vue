@@ -29,7 +29,9 @@
           :disabled="item.disabled"
           :clearable="item.clearable === false?false:true"
           :placeholder="item.placeholder"
+          :maxlength='item.maxlength || 30'
           :show-password="item.type=='password'"
+          @input='inputBind(item.inputType,formConfig.formModel,item.prop)'
           @blur='eventBind(item.blur,formConfig.formModel[item.prop])'
           @clear='eventBind(item.blur,formConfig.formModel[item.prop])'
         >
@@ -44,6 +46,7 @@
             type='text'
             :style='{width: item.width}'
             :disabled="item.disabled"
+            :maxlength='item.maxlength || 6'
             :clearable="item.clearable === false?false:true"
             :placeholder="item.placeholder"
             @blur='eventBind(item.blur,formConfig.formModel[item.prop])'
@@ -217,6 +220,9 @@
   /deep/ .el-input__suffix{
     right: 10px;
   }
+  /deep/ .el-form{
+    width: 100%;
+  }
 }
 .form-code{
   display: flex;
@@ -279,6 +285,11 @@ export default {
 
   },
   methods: {
+    inputBind(inputType, obj, value){
+      if(inputType == 'phone'){
+        obj[value] = obj[value].replace(/[^\d]/g,'');
+      }
+    },
     eventBind(event,arg){
       if(typeof event === 'function'){
         return event(arg);

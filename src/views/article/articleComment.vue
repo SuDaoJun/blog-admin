@@ -418,6 +418,7 @@ export default {
     },
     replyCommentAdd(){
       let {detailItem, index} = this.dialogBox
+      let articleId = this.articleId
       this.$prompt(`回复 @${detailItem.createUser.name}：`, '新增回复评论', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -432,6 +433,7 @@ export default {
       }).then(({ value }) => {
         let toUser = detailItem.createUser._id
         this.$api.article.replyCommentAdd({
+          articleId,
           commentId: detailItem._id,
           toUser,
           content: value
@@ -451,6 +453,7 @@ export default {
     },
     replyComment(item){
       let index = this.dialogBox.index
+      let articleId = this.articleId
       this.$prompt(`回复 @${item.replyUser.name}：`, '新增回复评论', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -464,6 +467,7 @@ export default {
         inputErrorMessage: '评论内容不为空'
       }).then(({ value }) => {
         this.$api.article.replyCommentAdd({
+          articleId,
           commentId: item.commentId,
           toUser: item.replyUser._id,
           content: value
@@ -585,9 +589,6 @@ export default {
     },
     // 删除
     dataDel(params){
-      if(params.row.replyCommentNum !== 0){
-        return this.$message.warning('请先删除已启用的回复评论');
-      }
       this.$confirm('此操作将永久删除该评论以及其回复评论, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

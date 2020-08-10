@@ -15,8 +15,8 @@
         <WangEnduit v-model="content"></WangEnduit>
       </div>
       <div class="box-btn">
-        <div class="btn-click btn-margin" @click='articleAdd("0")'>存草稿</div>
-        <div class="btn-click btn-submit" @click='articleAdd("1")'>发布</div>
+        <el-button class="btn-click btn-margin" :loading='loadObj.draftLoad' @click.native = 'articleAdd("0")'>存草稿</el-button>
+        <el-button class="btn-click btn-submit" :loading='loadObj.releaseLoad' type="primary" @click.native = 'articleAdd("1")'>发布</el-button>
       </div>
     </div>
   </div>
@@ -35,6 +35,10 @@ export default {
       type: 'add',
       fileList: [],
       content: "",
+      loadObj: {
+        draftLoad: false,
+        releaseLoad: false
+      },
       articleForm: {
         ref: 'articleRef',
         labelWidth: '80px',
@@ -179,9 +183,10 @@ export default {
     articleAdd(status){
       this.$refs["articleRef"].$refs["articleRef"].validate((valid) => {
         if (valid) {
-          let {content, fileList} = this
+          let {content, fileList, loadObj} = this
           if(this.content){
             let formModel = this.articleForm.formModel
+            status == '0'?loadObj.draftLoad = true:loadObj.releaseLoad = true
             if(this.type === 'add'){
               this.$api.article.articleAdd({
                 title: formModel.title,
@@ -192,6 +197,7 @@ export default {
                 tags: formModel.tags.join(',')
               }).then((res)=>{
                 let code = res.code
+                status == '0'?loadObj.draftLoad = false:loadObj.releaseLoad = false
                 if(code === this.$constant.reqSuccess){
                   this.$message.success('文章新增成功')
                   this.$router.push({path: '/article/articleList'})
@@ -213,6 +219,7 @@ export default {
                 tags: formModel.tags.join(',')
               }).then((res)=>{
                 let code = res.code
+                status == '0'?loadObj.draftLoad = false:loadObj.releaseLoad = false
                 if(code === this.$constant.reqSuccess){
                   this.$message.success('文章编辑成功')
                   this.$router.push({path: '/article/articleList'})
