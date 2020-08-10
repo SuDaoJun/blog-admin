@@ -12,7 +12,13 @@
       </my-form>
       <div class="box-content">
         <span class='content-info'>文章内容</span>
-        <WangEnduit v-model="content"></WangEnduit>
+        <!-- <WangEnduit v-model="content"></WangEnduit> -->
+        <mavon-editor 
+            v-model="content" 
+            v-highlight
+            @change="markChange" 
+            style="min-height: 600px;width: 100%;"
+        />
       </div>
       <div class="box-btn">
         <el-button class="btn-click btn-margin" :loading='loadObj.draftLoad' @click.native = 'articleAdd("0")'>存草稿</el-button>
@@ -27,6 +33,8 @@ import WangEnduit from "@/components/WangEnduit";
 import MyForm from '@/components/MyForm'
 import UploadFile from '@/components/UploadFile'
 import Format from "@/utils/format.js"
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 export default {
   data() {
     return {
@@ -35,6 +43,7 @@ export default {
       type: 'add',
       fileList: [],
       content: "",
+      html: '',
       loadObj: {
         draftLoad: false,
         releaseLoad: false
@@ -133,6 +142,9 @@ export default {
           this.$message.warning('获取文章详情失败');
         }
       })
+    },
+    markChange(value, render){
+      this.html = render;
     },
     getTagsList(){
       this.$api.article.tagList({
@@ -244,7 +256,8 @@ export default {
   components: {
     WangEnduit,
     MyForm,
-    UploadFile
+    UploadFile,
+    mavonEditor
   },
   computed: {}
 };
@@ -256,7 +269,6 @@ export default {
 }
 .box-content{
   width: 100%;
-  padding-right: 100px;
   display: flex;
   .content-info{
     width: 80px;

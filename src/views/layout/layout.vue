@@ -695,7 +695,7 @@ export default {
         }
         this.statementModel = true
       }else if(command === 'blog'){
-        window.open("http://47.112.104.1")
+        window.open("http://sdjBlog.cn")
       }else if(command === 'github'){
         window.open("https://github.com/SuDaoJun")
       }else if(command === 'logout'){
