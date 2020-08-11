@@ -6,8 +6,59 @@
     <title>project</title>
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <style type="text/css">
+      #Loading {
+        top:50%;
+        left:50%;
+        position: absolute;
+        -webkit-transform: translateY(-50%)  translateX(-50%);
+        transform: translateY(-50%)  translateX(-50%);
+        z-index:100;
+      }
+      @-webkit-keyframes ball-beat {
+        50% {
+          opacity: 0.2;
+          -webkit-transform: scale(0.75);
+          transform: scale(0.75); }
+
+        100% {
+          opacity: 1;
+          -webkit-transform: scale(1);
+          transform: scale(1); } }
+
+      @keyframes ball-beat {
+        50% {
+          opacity: 0.2;
+          -webkit-transform: scale(0.75);
+          transform: scale(0.75); }
+
+        100% {
+          opacity: 1;
+          -webkit-transform: scale(1);
+          transform: scale(1); } }
+
+      .ball-beat > div {
+        background-color: #279fcf;
+        width: 30px;
+        height: 30px;
+        border-radius: 100% !important;
+        margin: 2px;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        display: inline-block;
+        animation: ball-beat 0.7s 0s infinite linear; }
+      .ball-beat > div:nth-child(2n-1) {
+        animation-delay: 0.35s !important; }
+    </style>
   </head>
   <body>
+    <div id="Loading">
+      <div class="loader-inner ball-beat">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

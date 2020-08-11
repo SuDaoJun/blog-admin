@@ -9,6 +9,9 @@ import '@/assets/css/elTheme.scss';
 import '@/assets/css/common.scss';
 export default {
   name: 'App',
+  created() {
+    document.body.removeChild(document.getElementById('Loading'))
+  },
   mounted(){
     this.getThemeColor();
   },

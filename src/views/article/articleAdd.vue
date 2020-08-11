@@ -12,12 +12,12 @@
       </my-form>
       <div class="box-content">
         <span class='content-info'>文章内容</span>
-        <!-- <WangEnduit v-model="content"></WangEnduit> -->
+        <WangEnduit v-model="htmlContent" v-highlight v-show='articleForm.formModel.contentType == "0"'></WangEnduit>
         <mavon-editor 
-            v-model="content" 
+            v-model="markContent" 
             v-highlight
-            @change="markChange" 
-            style="min-height: 600px;width: 100%;"
+            v-show='articleForm.formModel.contentType == "1"'
+            style="min-height: 500px;width: 100%;"
         />
       </div>
       <div class="box-btn">
@@ -42,8 +42,8 @@ export default {
       articleTitle: '',
       type: 'add',
       fileList: [],
-      content: "",
-      html: '',
+      htmlContent: '',
+      markContent: '',
       loadObj: {
         draftLoad: false,
         releaseLoad: false
@@ -80,12 +80,28 @@ export default {
           {
             label: "文章封面",
             slot: 'upload'
+          },
+          {
+            type: "radio",
+            prop: "contentType",
+            label: '文章类型',
+            arrList: [
+              {
+                label: '富文本编辑',
+                value: '0'
+              },
+              {
+                label: 'markdown编辑',
+                value: '1'
+              }
+            ]
           }
         ],
         formModel: {
           title: '',
           description: '',
-          tags: []
+          tags: [],
+          contentType: '0'
         },
         rules: {
           title: [
@@ -108,11 +124,11 @@ export default {
       this.type = 'edit'
       this.id = this.$route.query.articleId
       this.articleTitle = this.$route.query.articleTitle
-      this.getData()
+      this.getDataDetail()
     }
   },
   methods: {
-    getData(){
+    getDataDetail(){
       this.$api.article.articleDetail({
         id: this.id
       }).then(res=>{
@@ -134,17 +150,15 @@ export default {
           })
           this.articleForm.formModel = {
             title: data.title,
+            contentType: data.contentType || '0',
             description: data.description,
             tags
           }
-          this.content = data.content
+          data.contentType == '1'?this.markContent = data.content:this.htmlContent = data.content
         }else{
           this.$message.warning('获取文章详情失败');
         }
       })
-    },
-    markChange(value, render){
-      this.html = render;
     },
     getTagsList(){
       this.$api.article.tagList({
@@ -172,38 +186,20 @@ export default {
     beforeRemove(file){
       this.fileList = []
     },
-    preview(){
-      if(this.content != ''){
-        this.$alert(this.content, '文章预览', {
-          dangerouslyUseHTMLString: true,
-          customClass: 'message-box w-e-text',
-          showConfirmButton: false,
-          closeOnClickModal: true
-        }).then(() => {
-
-        }).catch(action => {
-
-        })
-      }else{
-        this.$message.warning({
-          message: '预览文章内容不为空',
-          duration: 1500
-        })
-      }
-
-    },
     articleAdd(status){
       this.$refs["articleRef"].$refs["articleRef"].validate((valid) => {
         if (valid) {
-          let {content, fileList, loadObj} = this
-          if(this.content){
-            let formModel = this.articleForm.formModel
+          let {fileList, loadObj, markContent, htmlContent} = this
+          let formModel = this.articleForm.formModel
+          let content = formModel.contentType == '1'?markContent:htmlContent
+          if(content){
             status == '0'?loadObj.draftLoad = true:loadObj.releaseLoad = true
             if(this.type === 'add'){
               this.$api.article.articleAdd({
                 title: formModel.title,
                 description: formModel.description,
                 content,
+                contentType: formModel.contentType,
                 imgId: fileList.length > 0?fileList[0].sourceId:null,
                 status,
                 tags: formModel.tags.join(',')
@@ -225,6 +221,7 @@ export default {
                 id: this.id,
                 title: formModel.title,
                 description: formModel.description,
+                contentType: formModel.contentType,
                 content,
                 imgId: fileList.length > 0?fileList[0].sourceId:null,
                 status,
