@@ -849,7 +849,7 @@ export default {
         position: fixed;
         top: 0;
         right: 0;
-        z-index: 2020;
+        z-index: 1600;
         width: calc(100% - 240px);
         transition: all 0.4s;
         .info-header{

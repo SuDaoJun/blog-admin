@@ -12,12 +12,13 @@
       </my-form>
       <div class="box-content">
         <span class='content-info'>文章内容</span>
-        <WangEnduit v-model="htmlContent" v-highlight v-show='articleForm.formModel.contentType == "0"'></WangEnduit>
+        <WangEnduit v-model="content" v-highlight v-show='articleForm.formModel.contentType == "0"'></WangEnduit>
         <mavon-editor 
             v-model="markContent" 
             v-highlight
+            @change="handleMarkdownChange"
             v-show='articleForm.formModel.contentType == "1"'
-            style="min-height: 500px;width: 100%;"
+            style="min-height: 500px;width: 100%;height:500px"
         />
       </div>
       <div class="box-btn">
@@ -42,6 +43,7 @@ export default {
       articleTitle: '',
       type: 'add',
       fileList: [],
+      content: '',
       htmlContent: '',
       markContent: '',
       loadObj: {
@@ -154,7 +156,7 @@ export default {
             description: data.description,
             tags
           }
-          data.contentType == '1'?this.markContent = data.content:this.htmlContent = data.content
+          data.contentType == '1'?this.markContent = data.markContent:this.content = data.content
         }else{
           this.$message.warning('获取文章详情失败');
         }
@@ -186,19 +188,23 @@ export default {
     beforeRemove(file){
       this.fileList = []
     },
+    handleMarkdownChange(markdown, html){
+      this.htmlContent = html
+    },
     articleAdd(status){
       this.$refs["articleRef"].$refs["articleRef"].validate((valid) => {
         if (valid) {
-          let {fileList, loadObj, markContent, htmlContent} = this
+          let {fileList, loadObj, markContent, htmlContent, content} = this
           let formModel = this.articleForm.formModel
-          let content = formModel.contentType == '1'?markContent:htmlContent
-          if(content){
+          let contentData = formModel.contentType == '1'?htmlContent:content
+          if(contentData){
             status == '0'?loadObj.draftLoad = true:loadObj.releaseLoad = true
             if(this.type === 'add'){
               this.$api.article.articleAdd({
                 title: formModel.title,
                 description: formModel.description,
-                content,
+                content: contentData,
+                markContent: formModel.contentType == '1'?markContent:'',
                 contentType: formModel.contentType,
                 imgId: fileList.length > 0?fileList[0].sourceId:null,
                 status,
@@ -222,7 +228,8 @@ export default {
                 title: formModel.title,
                 description: formModel.description,
                 contentType: formModel.contentType,
-                content,
+                content: contentData,
+                markContent: formModel.contentType == '1'?markContent:'',
                 imgId: fileList.length > 0?fileList[0].sourceId:null,
                 status,
                 tags: formModel.tags.join(',')
