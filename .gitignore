@@ -1,5 +1,6 @@
 .DS_Store
 node_modules/
+blogAdmin/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
