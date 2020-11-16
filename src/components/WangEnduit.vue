@@ -179,8 +179,8 @@ export default {
           //循环插入图片
           // for (let i = 0; i < 1; i++) {
           // console.log(result)
-          let url = "http://otp.cdinfotech.top" + result.url;
-          insertImg(url);
+          // let url = "http://otp.cdinfotech.top" + result.url;
+          // insertImg(url);
           // }
         }
       };
