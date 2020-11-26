@@ -124,9 +124,10 @@ export default {
             prop: 'imgId',
             label: '项目封面',
             render: (h, params)=>{
-              return h('img',{
-                attrs: {
-                  src: params.row.imgId?`${this.$baseURL}/file/down?downId=${params.row.imgId}`:'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png'
+              return h('el-image',{
+                props: {
+                  src: params.row.imgId?`${this.$baseURL}/file/down?downId=${params.row.imgId}`:'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png',
+                  'preview-src-list': [params.row.imgId?`${this.$baseURL}/file/down?downId=${params.row.imgId}`:'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png']
                 },
                 style:{
                   width: '60px',

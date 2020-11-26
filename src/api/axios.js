@@ -5,7 +5,7 @@ import moment from 'moment'
 import {noticeList} from '@/utils/utils'
 import router from '@/router'
 
-export let baseURL = process.env.NODE_ENV == 'production'?'https://sdjBlog.cn:8090/blogAdmin':'http://localhost:3000/blogAdmin'
+export let baseURL = process.env.NODE_ENV == 'production'?'http://sdjBlog.cn:3000/blogAdmin':'http://localhost:3000/blogAdmin'
 let axios = Axios.create({
     baseURL,
     // timeout: 1000 * 10,
