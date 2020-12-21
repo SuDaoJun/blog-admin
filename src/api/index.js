@@ -50,6 +50,9 @@ const user = {
   resetPwd (params) {
     return axios.post('/user/resetPwd',params)
   },
+  setPwd (params) {
+    return axios.post('/user/setPwd',params)
+  },
   modifyPwd (params) {
     return axios.post('/user/modifyPwd',params)
   },

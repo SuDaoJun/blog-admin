@@ -159,7 +159,7 @@ export default {
           {
             prop: 'operate',
             align: 'center',
-            width: 260,
+            width: 320,
             label: '操作',
             render: (h, params) => {
               let status = params.row.status == '1'?true:false
@@ -185,6 +185,48 @@ export default {
                       }
                     }
                   }, status?'禁用':'启用'),
+                  h('el-button', {
+                    props: {
+                      type: 'primary',
+                      size: 'small'
+                    },
+                    style: {
+                      display: this.authList.includes('5e835039fb69305aa091e838')?'block':'none'
+                    },
+                    on: {
+                      click: () => {
+                        let userId = params.row._id;
+                        this.$confirm('此操作将重置该用户密码，是否继续？', '提示', {
+                          confirmButtonText: '确定',
+                          cancelButtonText: '取消',
+                          type: 'warning',
+                          beforeClose: (action, instance, done) => {
+                            if (action === 'confirm') {
+                              instance.confirmButtonLoading = true;
+                              instance.confirmButtonText = '重置中...';
+                              this.$api.user.setPwd({userId}).then((res)=>{
+                                let code = res.code;
+                                if(code === this.$constant.reqSuccess){
+                                  this.$message.success('密码重置成功，新密码为123456abc');
+                                }else{
+                                  this.$message.warning('密码重置失败');
+                                }
+                                instance.confirmButtonLoading = false;
+                                done();
+                              }).catch(()=>{
+                                instance.confirmButtonLoading = false;
+                                done();
+                              })
+                            } else {
+                              done();
+                            }
+                          }
+                        }).then(() => {
+                          
+                        }).catch(() => {})
+                      }
+                    }
+                  }, '重置密码'),
                   h('el-button', {
                     props: {
                       type: 'primary',
