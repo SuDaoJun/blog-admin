@@ -235,8 +235,8 @@ export default {
             type: "textarea",
             prop: "info",
             width: '320px',
-            label: "个人介绍：",
-            placeholder: "请输入个人介绍"
+            label: "个性签名：",
+            placeholder: "请输入个性签名"
           }
         ],
         formModel: {
@@ -255,9 +255,6 @@ export default {
           ],
           phone: [
             { required: true, validator: Format.FormValidate.Form('手机号码').Phone, trigger: 'blur' }
-          ],
-          info: [
-            { required: true, validator: Format.FormValidate.Form('个人介绍').NoEmpty, trigger: 'blur' }
           ]
         }
       },
