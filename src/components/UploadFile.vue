@@ -4,7 +4,7 @@
       <el-upload class='upload-file' enctype='multipart/form-data' :accept="accept" :limit='limit' :multiple="multiple"
         :list-type="listType" :file-list="fileList" :before-upload='beforeUpload' :before-remove='beforeRemove'
         :on-exceed='handleExceed' action="">
-        <i class="el-icon-plus avatar-uploader-icon" :style='{width: boxSize,height:boxSize,lineHeight:boxSize}'></i>
+        <i class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
       <div class="file-progress" v-if='progressObj.show'>
         <el-progress :percentage="progressObj.percentage" :status="progressObj.percentage == 100?'success':'exception'">
@@ -44,10 +44,6 @@ export default {
     listType: {
       type: String,
       default: "text"
-    },
-    boxSize: {
-      type: String,
-      default: "128px"
     },
     limit: {
       type: Number,
@@ -155,12 +151,17 @@ export default {
           border-color: #409eff;
         }
       }
+      /deep/ .el-upload--picture-card, /deep/ .el-upload-list__item{
+        width: 120px;
+        height: 120px;
+        line-height: 120px;
+      }
       .avatar-uploader-icon {
         font-size: 20px;
         color: #8c939d;
-        width: 128px;
-        height: 128px;
-        line-height: 128px;
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
         text-align: center;
       }
     }

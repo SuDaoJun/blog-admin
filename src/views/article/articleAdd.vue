@@ -11,11 +11,11 @@
           <div class="select-img" v-show='imgList.length > 0'>
             <el-image
             v-if='confirSourceId'
-            style="width: 148px; height: 148px;border-radius: 4px;"
+            style="width: 120px; height: 120px;border-radius: 4px;"
             :src='baseURL+"/file/down?downId="+confirSourceId'
             :lazy='true'
             fit="fill"></el-image>
-            <div class="select-txt" @click="dialogVisible = true">封面选择(封面上传优先)</div>
+            <div class="select-txt" @click="dialogVisible = true">封面选择(封面上传优先展示)</div>
           </div>
         </div>
       </my-form>
@@ -227,17 +227,20 @@ export default {
     },
     getImgList(){
       this.$api.article.articleImgStatistics({
-        num: 12
+        num: 30
       }).then(res =>{
         let code = res.code
         if(code === this.$constant.reqSuccess){
-          let list = res.data
-          if(list.length > 0){
-            list = list.filter((item)=>{
-              return item.imgId
-            })
-          }
-          this.imgList = list;
+          let list = res.data;
+          list = list.filter((item)=>{
+            return item.imgId
+          })
+          let hash = {}
+          let arrList = list.reduceRight((item, next) => {
+              hash[next.imgId] ? '' : hash[next.imgId] = true && item.push(next);
+              return item
+          }, []);
+          this.imgList = arrList;
         }else{
           this.$message.warning('获取图片列表失败');
         }
@@ -275,7 +278,7 @@ export default {
                 content: contentData,
                 markContent: formModel.contentType == '1'?markContent:'',
                 contentType: formModel.contentType,
-                imgId: fileList.length > 0?fileList[0].sourceId:null,
+                imgId,
                 status,
                 tags: formModel.tags.join(',')
               }).then((res)=>{
@@ -299,7 +302,7 @@ export default {
                 contentType: formModel.contentType,
                 content: contentData,
                 markContent: formModel.contentType == '1'?markContent:'',
-                imgId: fileList.length > 0?fileList[0].sourceId:null,
+                imgId,
                 status,
                 tags: formModel.tags.join(',')
               }).then((res)=>{
