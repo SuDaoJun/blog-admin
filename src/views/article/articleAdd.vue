@@ -6,8 +6,17 @@
         :ref='articleForm.ref'
         :formConfig="articleForm"
       >
-        <div slot='upload'>
+        <div slot='upload' class='upload-box'>
           <upload-file listType='picture-card' :fileList='fileList' @uploadEvent='beforeUpload' @removeEvent='beforeRemove'></upload-file>
+          <div class="select-img" v-show='imgList.length > 0'>
+            <el-image
+            v-if='confirSourceId'
+            style="width: 148px; height: 148px;border-radius: 4px;"
+            :src='baseURL+"/file/down?downId="+confirSourceId'
+            :lazy='true'
+            fit="fill"></el-image>
+            <div class="select-txt" @click="dialogVisible = true">封面选择(封面上传优先)</div>
+          </div>
         </div>
       </my-form>
       <div class="box-content">
@@ -26,6 +35,25 @@
         <el-button class="btn-click btn-submit" :loading='loadObj.releaseLoad' type="primary" @click.native = 'articleAdd("1")'>发布</el-button>
       </div>
     </div>
+    <el-dialog
+      title="封面选择"
+      :visible.sync="dialogVisible"
+      @open='dialogOpen'
+      width="40%">
+      <div class="dialog-list">
+        <div :class="selectSourceId == item.imgId?'list-item item-active':'list-item'" v-for='(item,index) in imgList' :key='item._id' @click='selectSourceId = item.imgId'>
+          <el-image
+          style="width: 100px; height: 100px"
+          :src='baseURL+"/file/down?downId="+item.imgId'
+          :lazy='true'
+          fit="fill"></el-image>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="confirSelect">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -39,6 +67,11 @@ import 'mavon-editor/dist/css/index.css'
 export default {
   data() {
     return {
+      imgList: [],
+      selectSourceId: '',
+      confirSourceId: '',
+      dialogVisible: false,
+      baseURL: this.$baseURL,
       id: '',
       articleTitle: '',
       type: 'add',
@@ -122,6 +155,7 @@ export default {
   created() {},
   mounted() {
     this.getTagsList()
+    this.getImgList()
     if(this.$route.query.articleId){
       this.type = 'edit'
       this.id = this.$route.query.articleId
@@ -182,6 +216,33 @@ export default {
         }
       })
     },
+    dialogOpen(){
+      this.selectSourceId = this.confirSourceId?this.confirSourceId:'';
+    },
+    confirSelect(){
+      if(this.selectSourceId){
+        this.confirSourceId = this.selectSourceId;
+        this.dialogVisible = false;
+      }
+    },
+    getImgList(){
+      this.$api.article.articleImgStatistics({
+        num: 12
+      }).then(res =>{
+        let code = res.code
+        if(code === this.$constant.reqSuccess){
+          let list = res.data
+          if(list.length > 0){
+            list = list.filter((item)=>{
+              return item.imgId
+            })
+          }
+          this.imgList = list;
+        }else{
+          this.$message.warning('获取图片列表失败');
+        }
+      })
+    },
     beforeUpload(fileData){
       this.fileList = [fileData]
     },
@@ -194,9 +255,17 @@ export default {
     articleAdd(status){
       this.$refs["articleRef"].$refs["articleRef"].validate((valid) => {
         if (valid) {
-          let {fileList, loadObj, markContent, htmlContent, content} = this
+          let {fileList, loadObj, markContent, htmlContent, content, confirSourceId} = this
           let formModel = this.articleForm.formModel
           let contentData = formModel.contentType == '1'?htmlContent:content
+          let imgId = null;
+          if(fileList.length > 0){
+            imgId = fileList[0].sourceId;
+          }else{
+            if(confirSourceId){
+              imgId = confirSourceId;
+            }
+          }
           if(contentData){
             status == '0'?loadObj.draftLoad = true:loadObj.releaseLoad = true
             if(this.type === 'add'){
@@ -300,6 +369,48 @@ export default {
     padding: 8px 20px;
     border: none;
     color: $color-W100;
+  }
+}
+.upload-box{
+  display: flex;
+  align-items: flex-start;
+  /deep/ .slot-upload{
+    width: auto;
+    max-width: 340px;
+  }
+  .select-img{
+    margin-left: 30px;
+    display: flex;
+    .select-txt{
+      padding: 5px;
+      line-height: 1.5;
+      margin-left: 8px;
+      color: #409EFF;
+      cursor: pointer;
+    }
+  }
+}
+.dialog-list{
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  .list-item{
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    &.item-active::after{
+      content: "\e720";
+      font-family: element-icons !important;
+      position: absolute;
+      right: -12px;
+      top: -12px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #409EFF;
+    }
   }
 }
 </style>

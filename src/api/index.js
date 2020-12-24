@@ -133,6 +133,9 @@ const article = {
   replyCommentDel(id){
       return axios.delete('/replyComment/del/'+id)
   },
+  articleImgStatistics (params) {
+      return axios.get('/statistics/articleImgStatistics',{params})
+  },
 }
 const project = {
   projectList (params) {
