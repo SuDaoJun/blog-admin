@@ -551,9 +551,11 @@ export default {
       })
     },
     readChange(index){
-      this.noticeLists[index].isRead = true
-      this.badgeNum--
-      localStorage.setItem('noticeLists',JSON.stringify(this.noticeLists))
+      if(this.noticeLists[index].isRead === false){
+        this.noticeLists[index].isRead = true
+        this.badgeNum--
+        localStorage.setItem('noticeLists',JSON.stringify(this.noticeLists))
+      }
     },
     clearSingle(item,index){
       if(!item.isRead){
