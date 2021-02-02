@@ -398,8 +398,6 @@ export default {
           if(code === this.$constant.reqSuccess){
             this.getDataList();
             this.$message.success('文章删除成功');
-            this.$api.upload.fileDel(params.row.imgId).then((res)=>{
-            })
           }else{
             this.$message.warning('文章删除失败');
           }
