@@ -567,7 +567,7 @@ export default {
     },
     replyCommentStatus(item){
       let status = item.status
-      let title =status?'是否确定禁用该回复评论？':'是否确定启用该回复评论？'
+      let title =status == '1'?'是否确定禁用该回复评论？':'是否确定启用该回复评论？'
       this.$confirm(title, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

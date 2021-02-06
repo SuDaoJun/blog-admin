@@ -79,6 +79,9 @@
     height: 550px;
     padding: 24px 0 0 20px;
     overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .el-tree-node__content{
       height: 35px;
       line-height: 35px;
@@ -179,7 +182,7 @@ export default {
         },
         rules: {
           title: [
-            { required: true, validator: Format.FormValidate.Form('菜单标题').NoEmpty, trigger: 'blur' }
+            { required: true, validator: Format.FormValidate.Form('标题').NoEmpty, trigger: 'blur' }
           ]
         }
       }
@@ -372,7 +375,7 @@ export default {
       })
     },
     dataDel(data){
-      if(data.function && data.function.length > 0){
+      if(data.functionList && data.functionList.length > 0){
         return this.$message.warning('该菜单存在功能列表，请先删除功能')
       }
       let typeName = data.menuId?'功能':'菜单'
