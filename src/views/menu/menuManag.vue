@@ -65,10 +65,12 @@
     padding-left: 20px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #C0C4CC;
+    border-bottom: 1px solid;
+    @include bd-color(#C0C4CC,$color-W10);
     .header-title{
       font-size: 16px;
       width: 260px;
+      @include font-color($color-D100,$color-W30);
       &:first-child{
         flex: 1;
       }
@@ -85,11 +87,15 @@
     .el-tree-node__content{
       height: 35px;
       line-height: 35px;
+      &:hover{
+        @include bg-color(#F5F7FA,$color-W30);
+      }
     }
+    
     .el-tree--highlight-current{
       .el-tree-node.is-current{
         &>.el-tree-node__content{
-          background-color: #c2ddf2;
+          @include bg-color(#c2ddf2,$color-W30);
         }
       }
     }

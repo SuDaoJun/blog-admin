@@ -122,6 +122,15 @@ $font_caption: 12px;
     box-shadow: $darkColor;
   }
 }
+@mixin box-opacity($lightOpacity: 1, $darkOpacity: .3){
+  opacity: $lightOpacity;
+  [data-theme='custom-light'] & {
+    opacity: $lightOpacity;
+  }
+  [data-theme='custom-dark'] & {
+    opacity: $darkOpacity;
+  }
+}
 // 单行文本超出隐藏
 @mixin overRow {
   white-space: nowrap;

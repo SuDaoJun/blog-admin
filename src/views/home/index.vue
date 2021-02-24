@@ -137,10 +137,11 @@
   }
   .content-line {
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    @include bg-color($color-W100, $color-W10);
     .line-header {
       padding: 20px;
-      border-bottom: 1px solid #e4e7ed;
+      border-bottom: 1px solid;
+      @include bd-color(#e4e7ed, $color-W10);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -161,7 +162,7 @@
       padding: 20px 20px 40px;
       h4 {
         font-size: 18px;
-        color: #303133;
+        @include font-color(#303133, $color-W30);
       }
       .content-list {
         .rank-header {
@@ -175,6 +176,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          @include font-color($color-D100, $color-W20);
           p:first-child {
             width: 40px;
             height: 20px;
@@ -191,6 +193,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            @include font-color($color-D100, $color-W20);
             .rank-index {
               width: 20px;
               height: 20px;
@@ -212,12 +215,13 @@
     margin-top: 24px;
     padding: 30px 20px 20px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    @include bg-color($color-W100, $color-W10);
     position: relative;
     h3 {
       font-size: 18px;
       margin-left: 20px;
       margin-bottom: 20px;
+      @include font-color(#303133, $color-W30);
     }
   }
 }
@@ -433,6 +437,9 @@ export default {
           inverse: true, //是否是反向坐标轴
           axisLine: {
             show: false //隐藏坐标轴轴线
+          },
+          axisLabel: {
+            color: "#707378"
           },
           axisTick: {
             show: false //隐藏坐标轴刻度

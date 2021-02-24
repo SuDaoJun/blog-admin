@@ -73,18 +73,18 @@
         </div>
       </el-scrollbar>
     </div>
-    <!-- <div class="right-panel" @click='drawerSetting = true'>
+    <div class="right-panel" @click='drawerSetting = true'>
       <i class="el-icon-setting" />
-    </div> -->
+    </div>
     <el-drawer
       title="配置中心"
       size='260px'
       :visible.sync="drawerSetting">
       <div class="box-drawer">
-        <!-- <div class="drawer-item">
+        <div class="drawer-item">
           <span>主题切换</span>
           <el-switch v-model="theme" @change='colorChange' />
-        </div> -->
+        </div>
         <div class="drawer-item">
           <span>开启Tags-View</span>
           <el-switch v-model="tagShow" @change='tagChange' />

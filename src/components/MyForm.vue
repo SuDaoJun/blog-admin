@@ -256,7 +256,7 @@
     }
     .btn-transparent {
       @include font-color($color-G90, $color-W90);
-      @include bg-color($color-W100, $color-C50);
+      @include bg-color($color-W100, $color-W10);
       @include bd-color($color-G40, $color-W10);
     }
   }

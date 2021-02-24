@@ -347,6 +347,7 @@ export default {
   width: 100%;
   display: flex;
   .content-info{
+    color: #606266;
     width: 80px;
     flex-shrink: 0;
   }
@@ -356,6 +357,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  .el-button--default:first-child{
+    @include bg-color($color-W100);
+    @include bd-color($color-C60,$color-W10);
+  }
   .btn-click{
     border: 1px solid $color-G40;
     padding: 8px 15px;

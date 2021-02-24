@@ -133,6 +133,7 @@
     @include font-color(#303133,$color-G80);
   }
 }
+
 .el-picker-panel{
   @include bg-color($color-W100,$color-C80);
   @include bd-color(#E4E7ED);
@@ -294,6 +295,17 @@
     @include font-color($color-W100,$color-W80);
   }
 }
+.el-message-box{
+  @include bg-color($color-W100,$color-C70);
+  @include bd-color(#EBEEF5,$color-C70);
+  .el-message-box__title{
+    @include font-color(#303133,$color-W50);
+  }
+  .el-button--default:first-child{
+    @include bg-color($color-W100);
+    @include bd-color($color-C60,$color-W10);
+  }
+}
 
 .el-color-picker__trigger{
   @include bd-color(#e6e6e6,$color-W10);
@@ -328,4 +340,35 @@
 }
 .el-table--border::after, .el-table--group::after, .el-table::before{
   @include bg-color($color-C20,$color-W10);
+}
+.el-date-table td.disabled div{
+  @include bg-color(#F5F7FA,$color-W20);
+}
+.el-tabs__item{
+  @include font-color(#303133,$color-W40);
+}
+.el-tree{
+  @include bg-color($color-W100,$color-W10);
+  @include font-color(#606266,$color-W40);
+}
+.el-tree-node__content{
+  &:hover{
+    @include bg-color(#F5F7FA,$color-W30);
+  }
+}
+.el-tree-node:focus>.el-tree-node__content{
+  @include bg-color(#F5F7FA,$color-W30);
+}
+.el-input.is-disabled .el-input__inner{
+  @include bg-color(#F5F7FA,$color-W30);
+}
+
+input::input-placeholder, textarea::input-placeholder{
+  @include font-color(#b2b2b2,$color-W20);
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder{
+  @include font-color(#b2b2b2,$color-W20);
+}
+input::-moz-placeholder, textarea::-moz-input-placeholder{
+  @include font-color(#b2b2b2,$color-W20);
 }
