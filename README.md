@@ -1,119 +1,46 @@
-## 前言
+# Getting Started with Create React App
 
-此 blog-admin 后台管理项目是基于 vue 全家桶 + Elementui
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## 效果
+## Available Scripts
 
-效果图：
+In the project directory, you can run:
 
-![首页亮](https://sdj_work.gitee.io/note/img/adminHome.png)
-![首页暗](https://sdj_work.gitee.io/note/img/adminDark.png)
+### `yarn start`
 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-完整效果请看：[http://sdjBlog.cn:8080/](http://sdjBlog.cn:8080/)
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-## 功能描述
+### `yarn test`
 
-### 已经实现功能
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- [x] 登录
-- [x] 注册
-- [x] 个人资料
-- [x] 数据统计
-- [x] 文章列表
-- [x] 评论列表
-- [x] 标签列表
-- [x] 项目列表
-- [x] 友情链接
-- [x] 留言列表
-- [x] 菜单功能
-- [x] 用户角色
+### `yarn build`
 
-### 待实现
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- [ ] 文章通过 MarkDown 编写
-- [ ] 使用 react 重构
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## 前端技术
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- vue
-- vuex
-- vue-route
-- axios
-- element-ui
-- moment
-- nprogress
-- highlight.js
-- scss
-- animate.css
-- echarts
-- js-base64
-- vue-count-to
-- vue-particles
-- wangeditor
-- xlsx
+### `yarn eject`
 
-## 主要项目结构
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-```
-- components
-  - TagsView 路由标签导航
-  - ChartCard 卡片
-  - EmptyShow 数据为空提示
-  - MyEcharts echarts图标封装
-  - MyForm 表单封装
-  - MyTable 表格封装
-  - TreeSelect 下拉树型结构
-  - UploadFile 文件上传
-  - WangEnduit WangEnduit 富文本编辑器
-- views
-  - article 文章列表、文章评论以及文章标签
-  - errorPage 错误页面，如404
-  - home 数据统计（访客、用户、文章和留言统计）
-  - layout 头部导航以及侧边导航
-  - link 友情链接列表
-  - login 登录注册
-  - menu 菜单功能
-  - message 留言列表
-  - project 项目列表
-  - user 用户角色（角色包括导入权限以及批量导入导出用户）
-  - redirect 路由重定向
-- api axios封装以及api接口
-- assets 图片和css资源
-- router 路由
-- store vuex 的状态管理
-- utils 封装的常用的方法，如表单验证，excel导出
-- permission.js 路由权限拦截，通过后台返回权限加载对应路由
-- main.js 入口文件，实例化Vue、插件初始化
-- app.vue 根组件
-```
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## 说明
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- 登录是通过用户名或邮箱加密码登录，测试账号：用户名：test  密码：123456
-- 从后台注册页面注册用户为博主管理员，可以发布自己文章和添加普通用户等权限
-- 该系统实现了菜单功能权限以及数据权限，根据用户角色拥有的权限加载菜单路由以及按钮操作，后台通过用户角色和权限进行api请求拦截以及请求数据获取该用户下的数据列表
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## Learn More
 
-## Build Setup ( 建立安装 )
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-```
-# install dependencies
-npm install
-
-# serve with hot reload at localhost: 8090
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-**项目地址：**
-
-> [前台展示: https://github.com/SuDaoJun/blog-page](https://github.com/SuDaoJun/blog-page)
-
-> [管理后台：https://github.com/SuDaoJun/blog-admin](https://github.com/SuDaoJun/blog-admin)
-
-> [后端：https://github.com/SuDaoJun/blog-node](https://github.com/SuDaoJun/blog-node)
-
-> [博客地址：http://sdjBlog.cn/](http://sdjBlog.cn/)
+To learn React, check out the [React documentation](https://reactjs.org/).

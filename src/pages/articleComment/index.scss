@@ -1,0 +1,43 @@
+.article-comment{
+  /deep/ .box-table{
+    .ant-switch-checked{
+      background-color: #13ce66;
+    }
+  }
+}
+.comment-box{
+  .list-item{
+    margin-bottom: 40px;
+    display: flex;
+    .item-content{
+      flex: 1;
+      .content-operate{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .operate-user{
+          .user-name{
+            color: $color-G100;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0 10px 0;
+          }
+          .comment-time{
+            i{
+              margin-right: 3px;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      .content-replay{
+        margin: 5px 0 0 10px;
+        .replay-user{
+          i{
+            color: $color-B60;
+          }
+        }
+      }
+    }
+  }
+}

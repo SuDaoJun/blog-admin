@@ -1,0 +1,91 @@
+.article-operate{
+  .box-table{
+    padding: 30px 60px 40px;
+  }
+  .box-content{
+    width: 100%;
+    display: flex;
+    .content-info{
+      width: 66px;
+      color: rgba(0, 0, 0, 0.85);
+      flex-shrink: 0;
+    }
+  }
+  .box-btn{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .btn-click{
+      border: 1px solid $color-G40;
+      padding: 8px 15px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+    .btn-margin{
+      margin: 0 25px;
+      padding: 8px 20px;
+    }
+    .btn-submit{
+      background-color: $color-B70;
+      padding: 8px 20px;
+      border: none;
+      color: $color-W100;
+    }
+  }
+  .upload-box{
+    display: flex;
+    align-items: flex-start;
+    .slot-upload{
+      width: auto;
+      max-width: 340px;
+    }
+    .select-txt{
+      padding: 5px;
+      line-height: 1.5;
+      margin-left: 8px;
+      color: #409EFF;
+      cursor: pointer;
+    }
+  }
+  .editor {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0;
+  }
+  .toolbar {
+    border: 1px solid #ccc;
+  }
+  .text {
+    border: 1px solid #ccc;
+    margin-top: -1px;
+    height: 500px;
+    min-height: 500px;
+    overflow-y: auto;
+  }
+}
+.dialog-list{
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  .list-item{
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    &.item-active::after{
+      content: "\e6bf";
+      font-family: iconfont !important;
+      position: absolute;
+      right: -12px;
+      top: -18px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #409EFF;
+    }
+  }
+}

@@ -1,0 +1,155 @@
+.login-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(../../assets/img/loginBg.jpg) no-repeat;
+  background-color: $color-C33;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background-color: $color-C33;
+    opacity: 0.5;
+  }
+  .index-particles {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+  .index-box {
+    position: relative;
+    z-index: 3;
+    .box-login {
+      width: 560px;
+      background-color: $color-D20;
+      padding: 40px 50px;
+      .flex-code{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        /deep/ .ant-form-item{
+          margin-bottom: 0;
+        }
+        /deep/ .code-show {
+          cursor: pointer;
+          .ant-btn-primary[disabled]{
+            background: rgba($color: #1890ff, $alpha: .8);
+            border-color: rgba($color: #1890ff, $alpha: .8);
+            color: $color-W70;;
+          }
+        }
+      }
+      .email-code {
+        padding: 3px 15px;
+        background-color: $color-B70;
+        letter-spacing: 1px;
+        color: $color-W70;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .email-ban {
+        background-color: $color-G70;
+        cursor: not-allowed;
+      }
+      .login-operate {
+        color: $color-W70;
+        margin-bottom: 30px;
+        margin-top: 15px;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /deep/ .operate-remeber {
+          .ant-checkbox-inner {
+            background-color: transparent;
+          }
+          .ant-checkbox-checked {
+            .ant-checkbox-inner {
+              background-color: $color-B90;
+              border-color: $color-B90;
+            }
+          }
+          span {
+            color: $color-W70;
+            &:hover {
+              color: $color-B90;
+            }
+          }
+        }
+        .operate-forget {
+          cursor: pointer;
+        }
+      }
+      .login-btn,
+      .register-btn {
+        width: 100%;
+        height: auto;
+        font-size: 16px;
+        padding: 8px 0;
+        border: none;
+        border-radius: 8px;
+        text-align: center;
+        color: $color-W90;
+        letter-spacing: 2px;
+        cursor: pointer;
+      }
+      .login-btn {
+        background-color: $color-GN50;
+        margin-bottom: 30px;
+        &:hover {
+          background-color: $color-GN30;
+        }
+      }
+      .register-btn {
+        background-color: $color-B70;
+        &:hover {
+          background-color: $color-B90;
+        }
+      }
+    }
+    /deep/ .login-form{
+      .ant-form-item {
+        .ant-input-affix-wrapper{
+          background-color: $transparent;
+          color: $color-W70;
+          border-radius: 0;
+          border-bottom: 1px solid $color-W70;
+          .ant-input{
+            background-color: $transparent;
+            color: $color-W70;
+            padding-left: 10px;
+            font-size: 14px;
+          }
+        }
+        &.ant-form-item-has-error{
+          .ant-input-affix-wrapper, .ant-input-affix-wrapper:focus{
+            border: none;
+            border-bottom: 1px solid $color-R40;
+            box-shadow: none;
+          }
+        }
+        .custom-icon {
+          font-size: 20px;
+        }
+        .ant-input-clear-icon,.ant-input-password-icon{
+          color: $color-W70;
+          font-size: 14px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

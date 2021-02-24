@@ -1,0 +1,55 @@
+.menu-wrapper{
+  .list-header{
+    width: 100%;
+    height: 40px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #C0C4CC;
+    .header-title{
+      font-size: 16px;
+      width: 260px;
+      &:first-child{
+        flex: 1;
+      }
+    }
+  }
+  .list-tree{
+    max-height: 550px;
+    height: 550px;
+    padding: 24px 0 0 20px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .tree-node{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .node-title{
+        flex: 1;
+        span{
+          font-size: 16px;
+          margin-left: 6px;
+        }
+      }
+    }
+  }
+  .node-box{
+    font-size: 16px;
+    width: 260px;
+    display: flex;
+    align-items: center;
+    .box-btn{
+      color: #409EFF;
+      cursor: pointer;
+    }
+    .btn-del{
+      color: #F56C6C;
+      margin: 0 40px;
+    }
+    .btn-add{
+      color: #e6a23c;
+    }
+  }
+}

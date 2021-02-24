@@ -1,0 +1,88 @@
+.tags-view-container {
+  height: 34px;
+  width: 100%;
+  border-bottom: 1px solid;
+  @include bd-color($color-C20,$color-D20);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
+  .tags-view-wrapper {
+    .tags-view-item {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      height: 26px;
+      line-height: 26px;
+      border: 1px solid;
+      @include bd-color($color-C20,$color-D30);
+      @include font-color($color-C40,$color-W50);
+      @include bg-color($color-W100,$color-W10);
+      padding: 0 8px;
+      font-size: 12px;
+      margin-left: 5px;
+      margin-top: 4px;
+      &:first-of-type {
+        margin-left: 15px;
+      }
+      &:last-of-type {
+        margin-right: 15px;
+      }
+      &.active {
+        @include bd-color($color-B40,$color-B70);
+        @include font-color($color-W100,$color-W100);
+        @include bg-color($color-B40,$color-B70);
+        &::before {
+          content: '';
+          background: $color-W100;
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          position: relative;
+          margin-right: 2px;
+        }
+      }
+      .tags-icon-close {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        text-align: center;
+        transition: all .3s cubic-bezier(.645, .045, .355, 1);
+        transform-origin: 100% 50%;
+        font-size: 12px;
+        transform: scale(.8);
+        vertical-align: -2px;
+        display: inline-block;
+        &:hover {
+          @include bg-color($color-G70,$color-W20);
+          color: $color-W100;
+        }
+      }
+    }
+  }
+  .contextmenu {
+    margin: 0;
+    @include bg-color($color-W100,$color-D70);
+    @include font-color($color-G80,$color-W70);
+    z-index: 3000;
+    position: absolute;
+    list-style-type: none;
+    padding: 5px 0;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+    li {
+      margin: 0;
+      padding: 7px 16px;
+      cursor: pointer;
+      &:hover {
+        @include bg-color($color-G30,$color-C80);
+      }
+    }
+  }
+}
+.scroll-container {
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
