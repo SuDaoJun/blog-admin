@@ -98,13 +98,13 @@ export default {
             type: "text",
             prop: "name",
             prefix: "mio-icon-yonghu",
-            placeholder: "用户名或邮箱"
+            placeholder: "用户名或邮箱（ test ）"
           },
           {
             type: "password",
             prop: "password",
             prefix: "mio-icon-mima",
-            placeholder: "密码"
+            placeholder: "密码（ 123456 ）"
           },
           {
             type: "code",

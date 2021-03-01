@@ -1,13 +1,17 @@
 ## 前言
 
-此 blog-admin 后台管理项目是基于 vue 全家桶 + Elementui
+此 blog-admin 后台管理项目是基于 vue 全家桶 + Element UI 开发
 
-## 效果
+## 分支
 
-效果图：
+react-admin：此分支是基于 react 全家桶 + Ant Design + TypeScript 进行重构开发  
 
-![首页亮](https://sdj_work.gitee.io/note/img/adminHome.png)
-![首页暗](https://sdj_work.gitee.io/note/img/adminDark.png)
+项目地址：[https://gitee.com/sdj_work/blog-admin/tree/react-admin/](https://gitee.com/sdj_work/blog-admin/tree/react-admin/)
+
+## 效果图
+
+![首页亮](https://s3.ax1x.com/2021/02/25/yviqrF.png)
+![首页暗](https://s3.ax1x.com/2021/02/25/yviLb4.png)
 
 
 完整效果请看：[http://sdjBlog.cn:8080/](http://sdjBlog.cn:8080/)
@@ -16,9 +20,9 @@
 
 ### 已经实现功能
 
-- [x] 登录
-- [x] 注册
+- [x] 登录注册
 - [x] 个人资料
+- [x] 主题切换
 - [x] 数据统计
 - [x] 文章列表
 - [x] 评论列表
@@ -29,43 +33,39 @@
 - [x] 菜单功能
 - [x] 用户角色
 
-### 待实现
-
-- [ ] 文章通过 MarkDown 编写
-- [ ] 使用 react 重构
-
 ## 前端技术
 
 - vue
 - vuex
 - vue-route
 - axios
+- scss
 - element-ui
 - moment
-- nprogress
 - highlight.js
-- scss
-- animate.css
 - echarts
-- js-base64
-- vue-count-to
-- vue-particles
 - wangeditor
+- mavon-editor
 - xlsx
 
 ## 主要项目结构
 
 ```
-- components
+- api axios封装以及api接口
+- assets 图片和css字体资源
+- components 组件封装
   - TagsView 路由标签导航
   - ChartCard 卡片
   - EmptyShow 数据为空提示
-  - MyEcharts echarts图标封装
+  - MyEcharts echarts图表封装
   - MyForm 表单封装
   - MyTable 表格封装
   - TreeSelect 下拉树型结构
   - UploadFile 文件上传
   - WangEnduit WangEnduit 富文本编辑器
+- router 路由封装
+- store vuex 的状态管理
+- utils 封装的常用的方法，如表单验证，excel导出
 - views
   - article 文章列表、文章评论以及文章标签
   - errorPage 错误页面，如404
@@ -78,14 +78,10 @@
   - project 项目列表
   - user 用户角色（角色包括导入权限以及批量导入导出用户）
   - redirect 路由重定向
-- api axios封装以及api接口
-- assets 图片和css资源
-- router 路由
-- store vuex 的状态管理
-- utils 封装的常用的方法，如表单验证，excel导出
-- permission.js 路由权限拦截，通过后台返回权限加载对应路由
-- main.js 入口文件，实例化Vue、插件初始化
 - app.vue 根组件
+- main.js 入口文件，实例化Vue、插件初始化
+- permission.js 路由权限拦截，通过后台返回权限加载对应路由
+
 ```
 
 ## 说明
@@ -108,12 +104,14 @@ npm run dev
 npm run build
 ```
 
+如果要看完整的效果，是要和后台项目  **[blog-node](https://gitee.com/sdj_work/blog-node)** 一起运行才行的，不然接口请求会失败。
+
 **项目地址：**
 
-> [前台展示: https://github.com/SuDaoJun/blog-page](https://github.com/SuDaoJun/blog-page)
+> [前台展示: https://gitee.com/sdj_work/blog-page](https://gitee.com/sdj_work/blog-page)
 
-> [管理后台：https://github.com/SuDaoJun/blog-admin](https://github.com/SuDaoJun/blog-admin)
+> [管理后台：https://gitee.com/sdj_work/blog-admin](https://gitee.com/sdj_work/blog-admin)
 
-> [后端：https://github.com/SuDaoJun/blog-node](https://github.com/SuDaoJun/blog-node)
+> [后端Node：https://gitee.com/sdj_work/blog-node](https://gitee.com/sdj_work/blog-node)
 
-> [博客地址：http://sdjBlog.cn/](http://sdjBlog.cn/)
+> [博客地址：https://sdjBlog.cn/](https://sdjBlog.cn/)
