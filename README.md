@@ -1,46 +1,114 @@
-# Getting Started with Create React App
+## 前言
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+此 react-admin 后台管理项目是基于 react 全家桶 + hooks + typescript + Ant Design 开发
 
-## Available Scripts
+## 主支
 
-In the project directory, you can run:
+blog-admin：此主支是基于 vue 全家桶 + Element UI 进行开发  
 
-### `yarn start`
+项目地址：[https://gitee.com/sdj_work/blog-admin](https://gitee.com/sdj_work/blog-admin)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 效果图
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![首页亮](https://s3.ax1x.com/2021/02/25/yviqrF.png)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+完整效果请看：[http://sdjblog.cn:9528/](http://sdjblog.cn:9528/)
 
-### `yarn build`
+## 功能描述
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 已经实现功能
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [x] 登录注册
+- [x] 个人资料
+- [x] 数据统计
+- [x] 文章列表
+- [x] 评论列表
+- [x] 标签列表
+- [x] 项目列表
+- [x] 友情链接
+- [x] 留言列表
+- [x] 菜单功能
+- [x] 用户角色
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 前端技术
 
-### `yarn eject`
+- react
+- redux
+- react-router-dom
+- axios
+- scss
+- typescript
+- antd
+- moment
+- highlight.js
+- echarts
+- wangeditor
+- for-editor
+- marked
+- js-export-excel
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 主要项目结构
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+- api axios封装以及api接口
+- assets 图片和css字体资源
+- components 组件封装
+  - TagsView 路由标签导航
+  - MyEcharts echarts图表封装
+  - ReactParticles 背景粒子封装
+- pages
+  - articleComment 文章评论
+  - articleList 文章列表
+  - articleOperate 文章新增或编辑
+  - articleTag 文章标签
+  - errorPage 错误页面，如404
+  - forget 忘记密码
+  - home 数据统计（访客、用户、文章和留言统计）
+  - layout 头部导航以及侧边导航
+  - link 友情链接列表
+  - login 登录
+  - menu 菜单功能
+  - message 留言列表
+  - project 项目列表
+  - register 注册
+  - role 用户角色（角色包括导入权限以及批量导入导出用户）
+  - user 用户列表
+- router 路由封装
+- store redux 的状态管理
+- utils 封装的常用的方法，如表单验证，时间格式化
+- index.tsx 入口文件，实例化Vue、插件初始化
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 说明
 
-## Learn More
+- 登录是通过用户名或邮箱加密码登录，测试账号：用户名：test  密码：123456
+- 从后台注册页面注册用户为博主管理员，可以发布自己文章和添加普通用户等权限
+- 该系统实现了菜单功能权限以及数据权限，根据用户角色拥有的权限加载菜单路由以及按钮操作，后台通过用户角色和权限进行api请求拦截以及请求数据获取该用户下的数据列表
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Build Setup ( 建立安装 )
+
+```
+# install dependencies
+npm install
+
+# serve with hot reload at localhost: 8090
+npm run dev
+
+# build for production with minification
+npm run build
+```
+
+如果要看完整的效果，是要和后台项目  **[blog-node](https://gitee.com/sdj_work/blog-node)** 一起运行才行的，不然接口请求会失败。
+
+**项目地址：**
+
+> [前台展示: https://gitee.com/sdj_work/blog-page](https://gitee.com/sdj_work/blog-page)
+
+> [管理后台：https://gitee.com/sdj_work/blog-admin](https://gitee.com/sdj_work/blog-admin)
+
+> [后端Node：https://gitee.com/sdj_work/blog-node](https://gitee.com/sdj_work/blog-node)
+
+> [博客地址：https://sdjBlog.cn/](https://sdjBlog.cn/)
