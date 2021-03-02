@@ -2,12 +2,6 @@
 
 此 blog-admin 后台管理项目是基于 vue 全家桶 + Element UI 开发
 
-## 分支
-
-react-admin：此分支是基于 react 全家桶 + Ant Design + TypeScript 进行重构开发  
-
-项目地址：[https://gitee.com/sdj_work/blog-admin/tree/react-admin/](https://gitee.com/sdj_work/blog-admin/tree/react-admin/)
-
 ## 效果图
 
 ![首页亮](https://s3.ax1x.com/2021/02/25/yviqrF.png)
