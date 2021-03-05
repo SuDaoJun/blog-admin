@@ -2,15 +2,9 @@
 
 此 react-admin 后台管理项目是基于 react 全家桶 + hooks + typescript + Ant Design 开发
 
-## 主支
-
-blog-admin：此主支是基于 vue 全家桶 + Element UI 进行开发  
-
-项目地址：[https://gitee.com/sdj_work/blog-admin](https://gitee.com/sdj_work/blog-admin)
-
 ## 效果图
 
-![首页亮](https://s3.ax1x.com/2021/02/25/yviqrF.png)
+![首页亮](https://s3.ax1x.com/2021/03/02/6k2L9g.png)
 
 
 完整效果请看：[http://sdjblog.cn:9528/](http://sdjblog.cn:9528/)
@@ -105,10 +99,10 @@ npm run build
 
 **项目地址：**
 
-> [前台展示: https://gitee.com/sdj_work/blog-page](https://gitee.com/sdj_work/blog-page)
+> [前台展示：https://gitee.com/sdj_work/blog-page（Vue/Nuxt/uni-app）](https://gitee.com/sdj_work/blog-page)
 
-> [管理后台：https://gitee.com/sdj_work/blog-admin](https://gitee.com/sdj_work/blog-admin)
+> [管理后台：https://gitee.com/sdj_work/blog-admin（Vue/React）](https://gitee.com/sdj_work/blog-admin)
 
-> [后端Node：https://gitee.com/sdj_work/blog-node](https://gitee.com/sdj_work/blog-node)
+> [后端Node：https://gitee.com/sdj_work/blog-node（Express/Koa）](https://gitee.com/sdj_work/blog-node)
 
 > [博客地址：https://sdjBlog.cn/](https://sdjBlog.cn/)
