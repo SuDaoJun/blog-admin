@@ -2,7 +2,6 @@
 
 此 blog-admin 后台管理项目是基于 vue 全家桶 + Element UI 开发
 
-
 ## 效果图
 
 ![首页亮](https://s3.ax1x.com/2021/02/25/yviqrF.png)
@@ -103,7 +102,7 @@ npm run build
 
 **项目地址：**
 
-> [前台展示: https://gitee.com/sdj_work/blog-page（Vue/Nuxt/uni-app）](https://gitee.com/sdj_work/blog-page)
+> [前台展示：https://gitee.com/sdj_work/blog-page（Vue/Nuxt/uni-app）](https://gitee.com/sdj_work/blog-page)
 
 > [管理后台：https://gitee.com/sdj_work/blog-admin（Vue/React）](https://gitee.com/sdj_work/blog-admin)
 
