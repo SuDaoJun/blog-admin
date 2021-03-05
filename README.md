@@ -102,10 +102,10 @@ npm run build
 
 **项目地址：**
 
-> [前台展示: https://gitee.com/sdj_work/blog-page](https://gitee.com/sdj_work/blog-page)
+> [前台展示：https://gitee.com/sdj_work/blog-page（Vue/Nuxt/uni-app）](https://gitee.com/sdj_work/blog-page)
 
-> [管理后台：https://gitee.com/sdj_work/blog-admin](https://gitee.com/sdj_work/blog-admin)
+> [管理后台：https://gitee.com/sdj_work/blog-admin（Vue/React）](https://gitee.com/sdj_work/blog-admin)
 
-> [后端Node：https://gitee.com/sdj_work/blog-node](https://gitee.com/sdj_work/blog-node)
+> [后端Node：https://gitee.com/sdj_work/blog-node（Express/Koa）](https://gitee.com/sdj_work/blog-node)
 
 > [博客地址：https://sdjBlog.cn/](https://sdjBlog.cn/)
