@@ -1,5 +1,6 @@
 .article-comment{
-  /deep/ .box-table{
+  .box-table{
+  // /deep/ .box-table{
     .ant-switch-checked{
       background-color: #13ce66;
     }

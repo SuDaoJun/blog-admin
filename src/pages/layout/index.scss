@@ -27,7 +27,8 @@
       cursor: pointer;
       @include overRow;
     }
-    /deep/ .sider-menu{
+    // /deep/ .sider-menu{
+    .sider-menu{
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -307,7 +308,8 @@
   }
 }
 .person-info{
-  /deep/  .form-modal {
+  // /deep/  .form-modal {
+  .form-modal {
     flex: 1;
     .ant-form-item-label{
       width: 90px;

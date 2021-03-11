@@ -39,10 +39,12 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        /deep/ .ant-form-item{
+        // /deep/ .ant-form-item{
+        .ant-form-item{
           margin-bottom: 0;
         }
-        /deep/ .code-show {
+        // /deep/ .code-show {
+        .code-show {
           cursor: pointer;
           .ant-btn-primary[disabled]{
             background: rgba($color: #1890ff, $alpha: .8);
@@ -72,7 +74,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        /deep/ .operate-remeber {
+        // /deep/ .operate-remeber {
+        .operate-remeber {
           .ant-checkbox-inner {
             background-color: transparent;
           }
@@ -120,7 +123,8 @@
         }
       }
     }
-    /deep/ .login-form{
+    // /deep/ .login-form{
+    .login-form{
       .ant-form-item {
         .ant-input-affix-wrapper{
           background-color: $transparent;
